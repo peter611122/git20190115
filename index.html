@@ -1,0 +1,52 @@
+<!DOCTYPE html><html lang='en' class=''>
+<head><script src='//static.codepen.io/assets/editor/live/console_runner-1df7d3399bdc1f40995a35209755dcfd8c7547da127f6469fd81e5fba982f6af.js'></script><script src='//static.codepen.io/assets/editor/live/css_reload-5619dc0905a68b2e6298901de54f73cefe4e079f65a75406858d92924b4938bf.js'></script><meta charset='UTF-8'><meta name="robots" content="noindex"><link rel="shortcut icon" type="image/x-icon" href="//static.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico" /><link rel="mask-icon" type="" href="//static.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111" /><link rel="canonical" href="https://codepen.io/peter611122/pen/PXLwvP?editors=1010" />
+
+<link rel='stylesheet' href='https://unpkg.com/leaflet@1.4.0/dist/leaflet.css'>
+<style class="cp-pen-styles">
+	<style>
+		html, body {
+			height: 100%;
+			margin: 0;
+		}
+		#map {
+			width: 600px;
+			height: 400px;
+		}
+	</style>
+</style></head><body>
+<div id="map"></div>
+<script src='//static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js'></script><script src='https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.4.0/leaflet.js'></script>
+<script >var cities = L.layerGroup();
+L.marker([22.989338, 120.219439]).bindPopup('<p>停車場代碼 : -</p><p>路名 : 懷恩街行</p><p>政區 : 東區</p><p>地點 : 懷恩街二格<p>車型類別 : 小型車(身障)</p><p>經緯度 : 22.989338，120.219439</p>').addTo(cities),
+L.marker([22.966708, 120.232079]).bindPopup('<p>停車場代碼 : -</p><p>路名 : 生產路</p><p>政區 : 東區</p><p>地點 : 臺南市政府警察局第一分局後面二格<p>車型類別 : 小型車(身障)</p><p>經緯度 : 22.966708，120.232079</p>').addTo(cities),
+L.marker([39.73, -104.8]).bindPopup('This is Aurora, CO.').addTo(cities),
+L.marker([39.77, -105.23]).bindPopup('This is Golden, CO.').addTo(cities);
+
+
+var mbAttr = 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+'<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+mbUrl = 'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw';
+
+var grayscale = L.tileLayer(mbUrl, { id: 'mapbox.light', attribution: mbAttr }),
+streets = L.tileLayer(mbUrl, { id: 'mapbox.streets', attribution: mbAttr });
+
+var map = L.map('map', {
+	center: [22.989338, 120.219439],
+	zoom: 10,
+	layers: [streets, cities] });
+
+
+var baseLayers = {
+	"Grayscale": grayscale,
+	"Streets": streets };
+
+
+var overlays = {
+	"Cities": cities };
+
+
+L.control.layers(baseLayers, overlays).addTo(map);
+//# sourceURL=pen.js
+</script>
+</body></html>
